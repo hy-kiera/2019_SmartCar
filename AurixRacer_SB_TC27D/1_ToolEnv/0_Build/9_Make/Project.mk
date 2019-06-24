@@ -42,6 +42,9 @@ include 1_ToolEnv/0_Build/9_Make/Defines.mk     # To get required make variables
 
 # Include sub folder make files
 include 1_ToolEnv/0_Build/9_Make/0_Src/SubDirectory.mk
+include 1_ToolEnv/0_Build/9_Make/1_ExtSrc/SubDirectory.mk
+include 1_ToolEnv/0_Build/9_Make/2_ExtSrc/SubDirectory.mk
+include 1_ToolEnv/0_Build/9_Make/3_ExtSrc/SubDirectory.mk
 
 .PHONY: all clean
 
