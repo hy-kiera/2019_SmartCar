@@ -9,3 +9,5 @@ AurixRacer_SB_TC27D/.tracecompass/
 AurixRacer_SB_TC27D/.cproject
 AurixRacer_SB_TC27D/.project
 AurixRacer_SB_TC27D/Makefile
+*.mk
+*.opt
