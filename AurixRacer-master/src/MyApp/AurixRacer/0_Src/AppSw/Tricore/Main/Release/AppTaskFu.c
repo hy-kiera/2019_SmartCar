@@ -22,6 +22,7 @@ void appTaskfu_init(void){
     tft_app_init(1);
     perf_meas_init();
 #elif BOARD == SHIELD_BUDDY
+    IR_setSrvAngle(0.2f);
     IR_setMotor0En(TRUE);
     IR_setMotor0Vol(1.0f);
 #endif
@@ -90,31 +91,33 @@ void appTaskfu_100ms(void)
 }
 
 volatile int velocity = 0;
-volatile int state = 0;
+volatile int state = -1;
+volatile int start = 0;
 void appTaskfu_1000ms(void)
 {
-	velocity += 1;
-	if(velocity >= 5)
-	{
-		if(state == 0) {
-			IR_setSrvAngle(0.00f);
+	if(start == 10) {
+		IR_setMotor0En(TRUE);
+		IR_setMotor0Vol(-0.5f);
+	}
+	start += 1;
+
+		if(state == -1) {
+			IR_setSrvAngle(0.2f);
+		}
+		else if(state == 0) {
+			IR_setSrvAngle(0.3f);
 		}
 		else if(state == 1) {
-			IR_setSrvAngle(0.2f);
+			IR_setSrvAngle(0.1f);
 		}
 		else if(state == 2) {
-			IR_setSrvAngle(0.4f);
+			IR_setSrvAngle(0.1f);
 		}
 		else if(state == 3) {
-			IR_setSrvAngle(0.2f);
+			IR_setSrvAngle(0.3f);
 		}
 
-		state +=1;
-		if(state >= 4) {
-			state = 0;
-		}
-		velocity = 0;
-	}
+		state = (state + 1) % 4;
 
 	task_cnt_1000m++;
 	if(task_cnt_1000m == 1000){

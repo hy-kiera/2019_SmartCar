@@ -147,7 +147,7 @@ volatile int encoderCounter = 0;
 volatile float memoryEncoder = 0;
 volatile int initCounter = 0;
 void BasicGpt12Enc_run(void){
-	encoderCounter = (encoderCounter + 1) % 10000;
+	encoderCounter = (encoderCounter + 1) % 1000;
 
 	IfxGpt12_IncrEnc_update(&g_Gpt12Enc.incrEnc);
 

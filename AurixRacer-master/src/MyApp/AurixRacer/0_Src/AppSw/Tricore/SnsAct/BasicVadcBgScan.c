@@ -139,8 +139,10 @@ void BasicVadcBgScan_init(void)
  */
 volatile int avoidSen[4] = {0, 0, 0, 0};
 
+volatile int vadcCount = 0;
 void BasicVadcBgScan_run(void)
 {
+	vadcCount = (vadcCount + 1) % 10000;
     uint32                    chnIx;
     /* wait for valid result */
     volatile Ifx_VADC_RES conversionResult;
